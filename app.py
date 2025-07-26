@@ -55,7 +55,7 @@ st.markdown("""
             </div>
             <div class="desc">🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</div>
         </div>
-        <img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO_NAME/main/logo.png">
+        <img src="blob:https://imgur.com/b54417a6-9bd7-4f2b-b83b-92f7080e91ab">
     </div>
 """, unsafe_allow_html=True)
 
@@ -85,7 +85,7 @@ df_grouped = df_grouped.sort_values(points_col, ascending=False)
 # 4. عرض العنوان والرسم البياني
 # ---------------------------
 st.title("🚴‍♂️ نتائج دوري الدراجين 251")
-st.markdown("📊 تحديث تلقائي كامل من Google Sheets")
+st.markdown(" Google Sheets 📊")
 
 chart = alt.Chart(df_grouped).mark_bar().encode(
     x=alt.X(f'{name_col}:N', sort='-y', title='المشارك', axis=alt.Axis(labelFontSize=16)),
