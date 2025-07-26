@@ -32,7 +32,7 @@ st.markdown("""
         }
 
         .logo-img {
-            height: 70px;
+            height: 120px;
         }
 
         .kfupm {
