@@ -3,7 +3,7 @@ import pandas as pd
 import altair as alt
 
 # ---------------------------
-# 1. إخفاء شعار ستريملت والقوائم
+# 1. إعداد CSS مخصص
 # ---------------------------
 st.markdown("""
     <style>
@@ -20,41 +20,43 @@ st.markdown("""
             100% { transform: scale(1); }
         }
 
-        .header-container {
+        .custom-header {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 20px;
-            margin-bottom: 30px;
             animation: pop-in 1s ease-out;
+            margin-bottom: 20px;
         }
 
-        .header-text {
+        .custom-header-text {
             text-align: right;
         }
 
-        .header-title {
+        .custom-header-text .title {
             font-size: 40px;
             font-weight: bold;
-            color: white;
         }
 
-        .header-subtitle {
-            font-size: 16px;
-            color: gray;
+        .custom-header-text .desc {
+            font-size: 18px;
+            color: #aaa;
         }
 
-        .logo-img {
-            max-height: 100px;
+        .custom-header img {
+            max-height: 80px;
+            border-radius: 8px;
         }
     </style>
 
-    <div class="header-container">
-        <div class="header-text">
-            <div class="header-title">KFUPM <span style='color: orange;'>CYCLISTS</span></div>
-            <div class="header-subtitle">🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</div>
+    <div class="custom-header">
+        <div class="custom-header-text">
+            <div class="title">
+                <span style="color:white">KFUPM</span> <span style="color:orange">CYCLISTS</span>
+            </div>
+            <div class="desc">🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</div>
         </div>
-        <img class="logo-img" src="https://i.imgur.com/KzccBVL.png">
+        <img src="https://i.imgur.com/lcThNZb.png">
     </div>
 """, unsafe_allow_html=True)
 
