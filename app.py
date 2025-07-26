@@ -3,7 +3,7 @@ import pandas as pd
 import altair as alt
 
 # ---------------------------
-# 1. CSS لتنسيق العنوان والشعار في صف واحد
+# 1. CSS مع شعار أكبر ومتناسق
 # ---------------------------
 st.markdown("""
     <style>
@@ -50,7 +50,7 @@ st.markdown("""
         }
 
         .logo-img {
-            height: 65px;
+            height: 80px;  /* ← تم تكبيره هنا */
         }
     </style>
 
