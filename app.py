@@ -1,4 +1,18 @@
 import streamlit as st
+
+# إخفاء شعار Streamlit و"Fork" والـ hamburger menu
+hide_streamlit_style = """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    .stDeployButton {display:none;}
+    header {visibility: hidden;}
+    .viewerBadge_container__1QSob {display: none;}
+    </style>
+    """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
+import streamlit as st
 import pandas as pd
 import altair as alt
 
