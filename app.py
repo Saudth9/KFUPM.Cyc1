@@ -24,7 +24,7 @@ st.markdown("""
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 25px;
+            gap: 10px;
             animation: pop-in 1s ease-out;
             margin-bottom: 0px;
         }
