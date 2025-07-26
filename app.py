@@ -45,7 +45,6 @@ st.markdown("""
 
         .custom-header img {
             max-height: 80px;
-            border-radius: 8px;
         }
     </style>
 
@@ -56,12 +55,12 @@ st.markdown("""
             </div>
             <div class="desc">🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</div>
         </div>
-        <img src="https://i.imgur.com/lcThNZb.png">
+        <img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO_NAME/main/logo.png">
     </div>
 """, unsafe_allow_html=True)
 
 # ---------------------------
-# 2. تحميل الإعدادات من Google Sheets
+# 2. تحميل إعدادات Google Sheets
 # ---------------------------
 config_sheet_id = "1Z7uxg5oIMOwKW1dANOwoxgqv7ewjnpu5euNfALb2VRs"
 config_url = f"https://docs.google.com/spreadsheets/d/{config_sheet_id}/gviz/tq?tqx=out:csv"
