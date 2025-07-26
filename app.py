@@ -3,7 +3,7 @@ import pandas as pd
 import altair as alt
 
 # ---------------------------
-# 1. إعداد CSS مخصص
+# 1. إعداد CSS مخصص + شعار علوي ثابت
 # ---------------------------
 st.markdown("""
     <style>
@@ -43,18 +43,19 @@ st.markdown("""
             color: gray;
             margin-top: 10px;
         }
+
+        .corner-logo {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            width: 60px;
+            height: auto;
+            z-index: 999;
+        }
     </style>
-""", unsafe_allow_html=True)
 
-# ---------------------------
-# 2. عرض الشعار
-# ---------------------------
-st.image("a0f80259-2ff4-42d5-89cb-c6d55716b9b5.png", width=100)
+    <img class="corner-logo" src="https://i.imgur.com/bND8Lte.png">
 
-# ---------------------------
-# 3. عرض العنوان النصي
-# ---------------------------
-st.markdown("""
     <div class='logo-container'>
         <span class='logo-title'>KFUPM</span>
         <span class='logo-subtitle'>CYCLISTS</span><br>
@@ -63,7 +64,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ---------------------------
-# 4. تحميل إعدادات Google Sheets
+# 2. تحميل الإعدادات من Google Sheets
 # ---------------------------
 config_sheet_id = "1Z7uxg5oIMOwKW1dANOwoxgqv7ewjnpu5euNfALb2VRs"
 config_url = f"https://docs.google.com/spreadsheets/d/{config_sheet_id}/gviz/tq?tqx=out:csv"
@@ -73,7 +74,7 @@ sheet_id = config_df.loc[config_df['المفتاح'] == 'sheet_id', 'القيم�
 sheet_name = config_df.loc[config_df['المفتاح'] == 'sheet_name', 'القيمة'].values[0]
 
 # ---------------------------
-# 5. قراءة وتجهيز البيانات
+# 3. قراءة وتجهيز البيانات
 # ---------------------------
 data_url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
 df = pd.read_csv(data_url).dropna()
@@ -85,7 +86,7 @@ df_grouped = df.groupby(name_col, as_index=False)[points_col].sum()
 df_grouped = df_grouped.sort_values(points_col, ascending=False)
 
 # ---------------------------
-# 6. عرض الرسم البياني
+# 4. عرض العنوان والرسم البياني
 # ---------------------------
 st.title("🚴‍♂️ نتائج دوري الدراجين 251")
 st.markdown("📊 تحديث تلقائي كامل من Google Sheets")
