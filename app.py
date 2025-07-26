@@ -12,7 +12,7 @@ st.markdown("""
         body {
             background-color: #111;
             color: white;
-        }
+        }[
 
         @keyframes pop-in {
             0%   { transform: scale(0.5); opacity: 0; }
@@ -55,7 +55,7 @@ st.markdown("""
             </div>
             <div class="desc">🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</div>
         </div>
-        <img src="blob:https://imgur.com/b54417a6-9bd7-4f2b-b83b-92f7080e91ab">
+        <img src="https://i.imgur.com/yRUFesf.png">
     </div>
 """, unsafe_allow_html=True)
 
