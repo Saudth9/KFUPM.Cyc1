@@ -3,7 +3,7 @@ import pandas as pd
 import altair as alt
 
 # ---------------------------
-# 1. CSS مع شعار أكبر ومتناسق
+# 1. إخفاء شعار ستريملت والقوائم
 # ---------------------------
 st.markdown("""
     <style>
@@ -26,7 +26,7 @@ st.markdown("""
             align-items: center;
             gap: 10px;
             animation: pop-in 1s ease-out;
-            margin-bottom: 0px;
+            margin-bottom: 5px;
         }
 
         .logo-title {
@@ -41,19 +41,23 @@ st.markdown("""
             color: orange;
         }
 
-        .logo-desc {
+        .logo-desc-wrapper {
             text-align: center;
-            font-size: 18px;
-            color: gray;
-            margin-top: 8px;
+            margin-top: 5px;
             margin-bottom: 25px;
         }
 
+        .logo-desc {
+            font-size: 18px;
+            color: gray;
+        }
+
         .logo-img {
-            height: 120px;  /* ← تم تكبيره هنا */
+            height: 80px;
         }
     </style>
 
+    <!-- الشعار + العنوان -->
     <div class="logo-row">
         <div>
             <span class="logo-title">KFUPM</span>
@@ -61,7 +65,11 @@ st.markdown("""
         </div>
         <img class="logo-img" src="https://i.imgur.com/bND8Lte.png">
     </div>
-    <div class="logo-desc">🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</div>
+
+    <!-- الوصف -->
+    <div class="logo-desc-wrapper">
+        <div class="logo-desc">🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</div>
+    </div>
 """, unsafe_allow_html=True)
 
 # ---------------------------
@@ -87,7 +95,7 @@ df_grouped = df.groupby(name_col, as_index=False)[points_col].sum()
 df_grouped = df_grouped.sort_values(points_col, ascending=False)
 
 # ---------------------------
-# 4. عرض النتائج
+# 4. عرض العنوان والرسم البياني
 # ---------------------------
 st.title("🚴‍♂️ نتائج دوري الدراجين 251")
 st.markdown("📊 تحديث تلقائي كامل من Google Sheets")
