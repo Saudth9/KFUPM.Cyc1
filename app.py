@@ -2,27 +2,28 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 
-# رابط ملف الإعدادات (ثابت)
-config_sheet_id = "1Z7uxg5oIMOwKW1dANOwoxgqv7ewjnpu5euNfALb2VRs"  # ID للملف اللي فيه الإعدادات
+# ID ملف الإعدادات (config)
+config_sheet_id = "1Z7uxg5oIMOwKW1dANOwoxgqv7ewjnpu5euNfALb2VRs"
 config_url = f"https://docs.google.com/spreadsheets/d/{config_sheet_id}/gviz/tq?tqx=out:csv"
 
-# قراءة ملف الإعدادات
+# قراءة الإعدادات
 config_df = pd.read_csv(config_url)
 sheet_id = config_df.loc[config_df['المفتاح'] == 'sheet_id', 'القيمة'].values[0]
 sheet_name = config_df.loc[config_df['المفتاح'] == 'sheet_name', 'القيمة'].values[0]
 
-# تحميل البيانات الحقيقية
+# رابط البيانات
 data_url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
-df = pd.read_csv(data_url).dropna()
 
-# تجهيز البيانات
+# قراءة وتجهيز البيانات
+df = pd.read_csv(data_url).dropna()
+df.columns = df.columns.str.strip()
 name_col = df.columns[0]
 points_col = df.columns[1]
 df[points_col] = pd.to_numeric(df[points_col], errors='coerce')
 df_grouped = df.groupby(name_col, as_index=False)[points_col].sum()
 df_grouped = df_grouped.sort_values(points_col, ascending=False)
 
-# عرض النتائج
+# عرض البيانات
 st.title("🚴‍♂️ نتائج دوري الدراجين ٢٥١")
 st.markdown("📊 تحديث تلقائي كامل من Google Sheets")
 
