@@ -20,35 +20,41 @@ st.markdown("""
             100% { transform: scale(1); }
         }
 
-        .logo-container {
-            text-align: center;
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
             margin-bottom: 30px;
             animation: pop-in 1s ease-out;
         }
 
-        .logo-title {
-            font-size: 48px;
+        .header-text {
+            text-align: right;
+        }
+
+        .header-title {
+            font-size: 40px;
             font-weight: bold;
             color: white;
         }
 
-        .logo-subtitle {
-            font-size: 48px;
-            font-weight: bold;
-            color: orange;
+        .header-subtitle {
+            font-size: 16px;
+            color: gray;
         }
 
-        .logo-desc {
-            font-size: 20px;
-            color: gray;
-            margin-top: 10px;
+        .logo-img {
+            max-height: 100px;
         }
     </style>
 
-    <div class='logo-container'>
-        <span class='logo-title'>KFUPM</span>
-        <span class='logo-subtitle'>CYCLISTS</span><br>
-        <span class='logo-desc'>🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</span>
+    <div class="header-container">
+        <div class="header-text">
+            <div class="header-title">KFUPM <span style='color: orange;'>CYCLISTS</span></div>
+            <div class="header-subtitle">🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</div>
+        </div>
+        <img class="logo-img" src="https://i.imgur.com/KzccBVL.png">
     </div>
 """, unsafe_allow_html=True)
 
