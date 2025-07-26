@@ -4,7 +4,8 @@ import altair as alt
 
 # 1. ثابت: ID للملف اللي فيه config
 config_sheet_id = "1zA5rXXXXXX_ID_الثابت_اللي_فيه_الاعدادات"
-config_url = f"https://docs.google.com/spreadsheets/d/{config_sheet_id}/gviz/tq?tqx=out:csv&sheet=config"
+config_sheet_id = "1AbCDefGhIJklMNOPQRstuVWXYZ1234567"
+config_url = f"https://docs.google.com/spreadsheets/d
 
 # 2. نقرأ ملف الإعدادات
 config_df = pd.read_csv(config_url)
