@@ -81,7 +81,7 @@ st.markdown("""
     </div>
 
     <div class='main-title'>🚴‍♂️ نتائج دوري الدراجين 251</div>
-    <div class='update-note'>📊 تحديث تلقائي كامل من Google Sheets</div>
+    <div class='update-note'> Google Sheets 📊 </div>
 """, unsafe_allow_html=True)
 
 # ---------------------------
