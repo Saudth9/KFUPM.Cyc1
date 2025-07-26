@@ -3,7 +3,7 @@ import pandas as pd
 import altair as alt
 
 # ---------------------------
-# 1. إعداد CSS وتنسيق العنوان مع الشعار
+# 1. إعداد CSS وتنسيق الهيدر
 # ---------------------------
 st.markdown("""
     <style>
@@ -23,10 +23,15 @@ st.markdown("""
         .logo-container {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 15px;
+            justify-content: space-between;
+            margin-bottom: 0px;
             animation: pop-in 1s ease-out;
-            margin-bottom: 10px;
+        }
+
+        .logo-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         .logo-title {
@@ -45,28 +50,28 @@ st.markdown("""
             text-align: center;
             font-size: 18px;
             color: gray;
-            margin-top: 0;
+            margin-top: 5px;
             margin-bottom: 20px;
         }
 
         .logo-img {
             height: 55px;
-            margin-top: 5px;
         }
     </style>
 
     <div class="logo-container">
-        <img class="logo-img" src="https://i.imgur.com/bND8Lte.png">
-        <div>
-            <span class="logo-title">KFUPM</span>
-            <span class="logo-subtitle">CYCLISTS</span>
+        <div class="logo-left">
+            <div class="logo-title">KFUPM</div>
+            <div class="logo-subtitle">CYCLISTS</div>
         </div>
+        <img class="logo-img" src="https://i.imgur.com/bND8Lte.png">
     </div>
+
     <div class="logo-desc">🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</div>
 """, unsafe_allow_html=True)
 
 # ---------------------------
-# 2. تحميل إعدادات Google Sheets
+# 2. تحميل الإعدادات من Google Sheets
 # ---------------------------
 config_sheet_id = "1Z7uxg5oIMOwKW1dANOwoxgqv7ewjnpu5euNfALb2VRs"
 config_url = f"https://docs.google.com/spreadsheets/d/{config_sheet_id}/gviz/tq?tqx=out:csv"
