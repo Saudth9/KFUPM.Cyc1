@@ -50,7 +50,7 @@ st.markdown("""
         }
 
         .logo-img {
-            height: 80px;  /* ← تم تكبيره هنا */
+            height: 120px;  /* ← تم تكبيره هنا */
         }
     </style>
 
