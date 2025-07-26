@@ -2,14 +2,49 @@ import streamlit as st
 
 # إخفاء شعار Streamlit و"Fork" والـ hamburger menu
 hide_streamlit_style = """
-    <style>
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    .stDeployButton {display:none;}
-    header {visibility: hidden;}
-    .viewerBadge_container__1QSob {display: none;}
-    </style>
+   st.markdown(
     """
+    <style>
+    @keyframes pop-in {
+        0%   { transform: scale(0.5); opacity: 0; }
+        80%  { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(1); }
+    }
+
+    .logo-container {
+        text-align: center;
+        margin-bottom: 30px;
+        animation: pop-in 1s ease-out;
+    }
+
+    .logo-title {
+        font-size: 48px;
+        font-weight: bold;
+        color: white;
+    }
+
+    .logo-subtitle {
+        font-size: 48px;
+        font-weight: bold;
+        color: orange;
+    }
+
+    .logo-desc {
+        font-size: 20px;
+        color: gray;
+        margin-top: 10px;
+    }
+    </style>
+
+    <div class='logo-container'>
+        <span class='logo-title'>KFUPM</span>
+        <span class='logo-subtitle'>CYCLISTS</span><br>
+        <span class='logo-desc'>🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</span>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 import streamlit as st
