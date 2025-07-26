@@ -5,7 +5,7 @@ import altair as alt
 # بيانات الرابط
 sheet_id = "اكتب_الـ_ID_الجديد_هنا"
 sheet_name = "Sheet1"  # تأكد من الاسم بالضبط
-csv_url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
+csv_url = f"1ABcD12345EfGHIJKLmNOPQRstUVwxYZ"
 
 # تحميل البيانات
 df = pd.read_csv(csv_url)
