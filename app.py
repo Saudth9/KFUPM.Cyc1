@@ -12,7 +12,7 @@ st.markdown("""
         body {
             background-color: #111;
             color: white;
-        }[
+        }
 
         @keyframes pop-in {
             0%   { transform: scale(0.5); opacity: 0; }
@@ -20,47 +20,50 @@ st.markdown("""
             100% { transform: scale(1); }
         }
 
-        .custom-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
+        .logo-container {
+            text-align: center;
             animation: pop-in 1s ease-out;
             margin-bottom: 20px;
         }
 
-        .custom-header-text {
-            text-align: right;
-        }
-
-        .custom-header-text .title {
-            font-size: 40px;
+        .logo-title {
+            font-size: 48px;
             font-weight: bold;
+            color: white;
         }
 
-        .custom-header-text .desc {
-            font-size: 18px;
-            color: #aaa;
+        .logo-subtitle {
+            font-size: 48px;
+            font-weight: bold;
+            color: orange;
         }
 
-        .custom-header img {
-            max-height: 80px;
+        .logo-desc {
+            font-size: 20px;
+            color: gray;
+            margin-top: 10px;
         }
     </style>
+""", unsafe_allow_html=True)
 
-    <div class="custom-header">
-        <div class="custom-header-text">
-            <div class="title">
-                <span style="color:white">KFUPM</span> <span style="color:orange">CYCLISTS</span>
-            </div>
-            <div class="desc">🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</div>
-        </div>
-        <img src="https://i.imgur.com/yRUFesf.png">
+# ---------------------------
+# 2. عرض الشعار
+# ---------------------------
+st.image("a0f80259-2ff4-42d5-89cb-c6d55716b9b5.png", width=100)
+
+# ---------------------------
+# 3. عرض العنوان النصي
+# ---------------------------
+st.markdown("""
+    <div class='logo-container'>
+        <span class='logo-title'>KFUPM</span>
+        <span class='logo-subtitle'>CYCLISTS</span><br>
+        <span class='logo-desc'>🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</span>
     </div>
 """, unsafe_allow_html=True)
 
 # ---------------------------
-# 2. تحميل إعدادات Google Sheets
+# 4. تحميل إعدادات Google Sheets
 # ---------------------------
 config_sheet_id = "1Z7uxg5oIMOwKW1dANOwoxgqv7ewjnpu5euNfALb2VRs"
 config_url = f"https://docs.google.com/spreadsheets/d/{config_sheet_id}/gviz/tq?tqx=out:csv"
@@ -70,7 +73,7 @@ sheet_id = config_df.loc[config_df['المفتاح'] == 'sheet_id', 'القيم�
 sheet_name = config_df.loc[config_df['المفتاح'] == 'sheet_name', 'القيمة'].values[0]
 
 # ---------------------------
-# 3. قراءة وتجهيز البيانات
+# 5. قراءة وتجهيز البيانات
 # ---------------------------
 data_url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
 df = pd.read_csv(data_url).dropna()
@@ -82,10 +85,10 @@ df_grouped = df.groupby(name_col, as_index=False)[points_col].sum()
 df_grouped = df_grouped.sort_values(points_col, ascending=False)
 
 # ---------------------------
-# 4. عرض العنوان والرسم البياني
+# 6. عرض الرسم البياني
 # ---------------------------
 st.title("🚴‍♂️ نتائج دوري الدراجين 251")
-st.markdown(" Google Sheets 📊")
+st.markdown("📊 تحديث تلقائي كامل من Google Sheets")
 
 chart = alt.Chart(df_grouped).mark_bar().encode(
     x=alt.X(f'{name_col}:N', sort='-y', title='المشارك', axis=alt.Axis(labelFontSize=16)),
