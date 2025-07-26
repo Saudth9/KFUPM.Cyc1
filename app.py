@@ -3,7 +3,7 @@ import pandas as pd
 import altair as alt
 
 # ---------------------------
-# 1. إعداد CSS مع إطار مخصص
+# 1. CSS لإظهار الشعار في الزاوية العلوية اليمنى بشكل واضح وكبير
 # ---------------------------
 st.markdown("""
     <style>
@@ -20,18 +20,19 @@ st.markdown("""
             100% { transform: scale(1); }
         }
 
-        .header-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
-            animation: pop-in 1s ease-out;
+        .top-right-logo {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            width: 90px;
+            height: auto;
+            z-index: 1000;
         }
 
-        .title-section {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+        .logo-container {
+            text-align: center;
+            animation: pop-in 1s ease-out;
+            margin-bottom: 10px;
         }
 
         .logo-title {
@@ -47,39 +48,23 @@ st.markdown("""
         }
 
         .logo-desc {
+            text-align: center;
             font-size: 18px;
             color: gray;
             margin-top: 5px;
-        }
-
-        .logo-box {
-            border: 2px solid white;
-            padding: 8px;
-            border-radius: 8px;
-            height: 70px;
-            width: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo-img {
-            height: 60px;
+            margin-bottom: 30px;
         }
     </style>
 
-    <div class="header-wrapper">
-        <div class="title-section">
-            <div>
-                <span class="logo-title">KFUPM</span>
-                <span class="logo-subtitle">CYCLISTS</span>
-            </div>
-            <div class="logo-desc">🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</div>
-        </div>
-        <div class="logo-box">
-            <img class="logo-img" src="https://i.imgur.com/bND8Lte.png">
-        </div>
+    <!-- شعار علوي ثابت -->
+    <img class="top-right-logo" src="https://i.imgur.com/bND8Lte.png">
+
+    <!-- العنوان الرئيسي -->
+    <div class="logo-container">
+        <span class="logo-title">KFUPM</span>
+        <span class="logo-subtitle">CYCLISTS</span><br>
     </div>
+    <div class="logo-desc">🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</div>
 """, unsafe_allow_html=True)
 
 # ---------------------------
