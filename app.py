@@ -3,7 +3,7 @@ import pandas as pd
 import altair as alt
 
 # رابط Google Sheet
-sheet_id = "1hzxrBWgNpeSN-aEB9oV8O4awj6JBpvw7TJ4aJy7uLEE"
+sheet_id = "https://docs.google.com/spreadsheets/d/1hzxrBWgNpeSN-aEB9oV8O4awj6JBpvw7TJ4aJy7uLEE/edit?gid=0#gid=0"
 sheet_name = "Sheet1"
 csv_url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
 
