@@ -5,7 +5,8 @@ import altair as alt
 # ID الجدول من Google Sheets
 sheet_id = "اكتب_الـ_ID_هنا"
 sheet_name = "Sheet1"
-csv_url = f"sheet_id = "1FZxOqW9vS5xPQdN4Ib2o3G9Xb7mG3y8eKlHZLZ0RjU4"
+csv_url = sheet_id = "1FZxOqW9vS5xPQdN4Ib2o3G9Xb7mG3y8eKlHZLZ0RjU4"
+
 
 # تحميل البيانات
 df = pd.read_csv(csv_url).dropna()
