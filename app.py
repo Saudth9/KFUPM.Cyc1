@@ -3,7 +3,7 @@ import pandas as pd
 import altair as alt
 
 # ---------------------------
-# 1. CSS لإظهار الشعار في الزاوية العلوية اليمنى بشكل واضح وكبير
+# 1. CSS مع تعديل موضع الشعار (أقرب للكلام)
 # ---------------------------
 st.markdown("""
     <style>
@@ -22,8 +22,8 @@ st.markdown("""
 
         .top-right-logo {
             position: absolute;
-            top: 10px;
-            right: 20px;
+            top: 65px;  /* نزلناه من 10px إلى 65px */
+            right: 30px;
             width: 90px;
             height: auto;
             z-index: 1000;
@@ -56,10 +56,10 @@ st.markdown("""
         }
     </style>
 
-    <!-- شعار علوي ثابت -->
+    <!-- الشعار العلوي -->
     <img class="top-right-logo" src="https://i.imgur.com/bND8Lte.png">
 
-    <!-- العنوان الرئيسي -->
+    <!-- العنوان -->
     <div class="logo-container">
         <span class="logo-title">KFUPM</span>
         <span class="logo-subtitle">CYCLISTS</span><br>
