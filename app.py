@@ -3,7 +3,7 @@ import pandas as pd
 import altair as alt
 
 # ---------------------------
-# 1. إعداد CSS مخصص + شعار علوي ثابت
+# 1. إعداد CSS وتنسيق العنوان مع الشعار
 # ---------------------------
 st.markdown("""
     <style>
@@ -21,9 +21,12 @@ st.markdown("""
         }
 
         .logo-container {
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
             animation: pop-in 1s ease-out;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .logo-title {
@@ -39,32 +42,31 @@ st.markdown("""
         }
 
         .logo-desc {
-            font-size: 20px;
+            text-align: center;
+            font-size: 18px;
             color: gray;
-            margin-top: 10px;
+            margin-top: 0;
+            margin-bottom: 20px;
         }
 
-        .corner-logo {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            width: 60px;
-            height: auto;
-            z-index: 999;
+        .logo-img {
+            height: 55px;
+            margin-top: 5px;
         }
     </style>
 
-    <img class="corner-logo" src="https://i.imgur.com/bND8Lte.png">
-
-    <div class='logo-container'>
-        <span class='logo-title'>KFUPM</span>
-        <span class='logo-subtitle'>CYCLISTS</span><br>
-        <span class='logo-desc'>🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</span>
+    <div class="logo-container">
+        <img class="logo-img" src="https://i.imgur.com/bND8Lte.png">
+        <div>
+            <span class="logo-title">KFUPM</span>
+            <span class="logo-subtitle">CYCLISTS</span>
+        </div>
     </div>
+    <div class="logo-desc">🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</div>
 """, unsafe_allow_html=True)
 
 # ---------------------------
-# 2. تحميل الإعدادات من Google Sheets
+# 2. تحميل إعدادات Google Sheets
 # ---------------------------
 config_sheet_id = "1Z7uxg5oIMOwKW1dANOwoxgqv7ewjnpu5euNfALb2VRs"
 config_url = f"https://docs.google.com/spreadsheets/d/{config_sheet_id}/gviz/tq?tqx=out:csv"
@@ -86,7 +88,7 @@ df_grouped = df.groupby(name_col, as_index=False)[points_col].sum()
 df_grouped = df_grouped.sort_values(points_col, ascending=False)
 
 # ---------------------------
-# 4. عرض العنوان والرسم البياني
+# 4. عرض النتائج
 # ---------------------------
 st.title("🚴‍♂️ نتائج دوري الدراجين 251")
 st.markdown("📊 تحديث تلقائي كامل من Google Sheets")
