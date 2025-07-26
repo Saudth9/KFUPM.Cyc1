@@ -3,7 +3,7 @@ import pandas as pd
 import altair as alt
 
 # ---------------------------
-# 1. إعداد CSS وتنسيق الهيدر
+# 1. إعداد CSS مع شعار في الزاوية
 # ---------------------------
 st.markdown("""
     <style>
@@ -20,18 +20,19 @@ st.markdown("""
             100% { transform: scale(1); }
         }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 0px;
-            animation: pop-in 1s ease-out;
+        .top-corner-logo {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            width: 80px;
+            height: auto;
+            z-index: 999;
         }
 
-        .logo-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+        .logo-container {
+            text-align: center;
+            animation: pop-in 1s ease-out;
+            margin-bottom: 10px;
         }
 
         .logo-title {
@@ -51,27 +52,23 @@ st.markdown("""
             font-size: 18px;
             color: gray;
             margin-top: 5px;
-            margin-bottom: 20px;
-        }
-
-        .logo-img {
-            height: 55px;
+            margin-bottom: 30px;
         }
     </style>
 
-    <div class="logo-container">
-        <div class="logo-left">
-            <div class="logo-title">KFUPM</div>
-            <div class="logo-subtitle">CYCLISTS</div>
-        </div>
-        <img class="logo-img" src="https://i.imgur.com/bND8Lte.png">
-    </div>
+    <!-- الشعار في الزاوية -->
+    <img class="top-corner-logo" src="https://i.imgur.com/bND8Lte.png">
 
+    <!-- العنوان الرئيسي -->
+    <div class="logo-container">
+        <span class="logo-title">KFUPM</span>
+        <span class="logo-subtitle">CYCLISTS</span><br>
+    </div>
     <div class="logo-desc">🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</div>
 """, unsafe_allow_html=True)
 
 # ---------------------------
-# 2. تحميل الإعدادات من Google Sheets
+# 2. تحميل إعدادات Google Sheets
 # ---------------------------
 config_sheet_id = "1Z7uxg5oIMOwKW1dANOwoxgqv7ewjnpu5euNfALb2VRs"
 config_url = f"https://docs.google.com/spreadsheets/d/{config_sheet_id}/gviz/tq?tqx=out:csv"
