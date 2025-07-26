@@ -38,7 +38,7 @@ df_grouped = df.groupby(name_col, as_index=False)[points_col].sum()
 df_grouped = df_grouped.sort_values(points_col, ascending=False)
 
 # عرض البيانات
-st.title("🚴‍♂️ نتائج دوري الدراجين ٢٥١")
+st.title("🚴‍♂️ نتائج دوري الدراجين 251")
 st.markdown("📊 تحديث تلقائي كامل من Google Sheets")
 
 chart = alt.Chart(df_grouped).mark_bar().encode(
