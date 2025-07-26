@@ -2,28 +2,32 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 
-# 1. ثابت: ID للملف اللي فيه config
-config_sheet_id = "1zA5rXXXXXX_ID_الثابت_اللي_فيه_الاعدادات"
-config_sheet_id = "1AbCDefGhIJklMNOPQRstuVWXYZ1234567"
-config_url = f"https://docs.google.com/spreadsheets/d
+# 1. ID لملف الإعدادات (config)
+config_sheet_id = "1AbCDefGhIJklMNOPQRstuVWXYZ1234567"  # ← غيّر هذا بـ ID الصحيح
+config_sheet_name = "config"  # ← اسم الشيت داخل الملف، تأكد أنه موجود بنفس الاسم
 
-# 2. نقرأ ملف الإعدادات
+# 2. رابط ملف الإعدادات
+config_url = f"https://docs.google.com/spreadsheets/d/{config_sheet_id}/gviz/tq?tqx=out:csv&sheet={config_sheet_name}"
+
+# 3. قراءة الإعدادات
 config_df = pd.read_csv(config_url)
 sheet_id = config_df.loc[config_df['المفتاح'] == 'sheet_id', 'القيمة'].values[0]
 sheet_name = config_df.loc[config_df['المفتاح'] == 'sheet_name', 'القيمة'].values[0]
 
-# 3. نستخدمهم لرابط البيانات الحقيقي
+# 4. رابط البيانات الرئيسي
 data_url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
 
-# 4. تحميل وتجهيز البيانات
+# 5. تحميل البيانات وتنظيفها
 df = pd.read_csv(data_url).dropna()
 name_col = df.columns[0]
 points_col = df.columns[1]
 df[points_col] = pd.to_numeric(df[points_col], errors='coerce')
+
+# تجميع النقاط وترتيبها
 df_grouped = df.groupby(name_col, as_index=False)[points_col].sum()
 df_grouped = df_grouped.sort_values(points_col, ascending=False)
 
-# 5. عرض النتائج
+# 6. عرض العنوان والرسم البياني
 st.title("🚴‍♂️ نتائج دوري الدراجين ٢٥١")
 st.markdown("📊 تحديث تلقائي كامل من Google Sheets")
 
