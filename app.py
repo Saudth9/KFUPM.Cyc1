@@ -13,6 +13,21 @@ hide_streamlit_style = """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 import streamlit as st
+# تعديل شكل Streamlit وإضافة الشعار
+st.markdown("""
+    <style>
+        #MainMenu, footer, header {visibility: hidden;}
+        .block-container {padding-top: 2rem;}
+        body {
+            background-color: #111;
+            color: white;
+        }
+    </style>
+    <div style='text-align: center; margin-bottom: 20px;'>
+        <img src='https://i.imgur.com/jtBDxJV.png' style='max-width: 300px;'>
+    </div>
+""", unsafe_allow_html=True)
+
 import pandas as pd
 import altair as alt
 
