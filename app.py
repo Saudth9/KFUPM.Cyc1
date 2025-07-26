@@ -18,7 +18,7 @@ try:
     df = df.sort_values(points_col)
 
     st.set_page_config(page_title="دوري الدراجين ٢٤٢", layout="wide")
-    st.title("🚴‍♂️ نتائج دوري الدراجين ٢٤٢")
+st.title("🚴‍♂️ نتائج دوري الدراجين ٢٥١")
     st.markdown("📊 تحديث تلقائي من Google Sheets")
 
     chart = alt.Chart(df).mark_bar().encode(
