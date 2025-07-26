@@ -3,7 +3,7 @@ import pandas as pd
 import altair as alt
 
 # ---------------------------
-# 1. CSS مع تعديل موضع الشعار (أقرب للكلام)
+# 1. CSS لتنسيق العنوان والشعار في صف واحد
 # ---------------------------
 st.markdown("""
     <style>
@@ -20,19 +20,13 @@ st.markdown("""
             100% { transform: scale(1); }
         }
 
-        .top-right-logo {
-            position: absolute;
-            top: 65px;  /* نزلناه من 10px إلى 65px */
-            right: 30px;
-            width: 90px;
-            height: auto;
-            z-index: 1000;
-        }
-
-        .logo-container {
-            text-align: center;
+        .logo-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
             animation: pop-in 1s ease-out;
-            margin-bottom: 10px;
+            margin-bottom: 0px;
         }
 
         .logo-title {
@@ -51,18 +45,21 @@ st.markdown("""
             text-align: center;
             font-size: 18px;
             color: gray;
-            margin-top: 5px;
-            margin-bottom: 30px;
+            margin-top: 8px;
+            margin-bottom: 25px;
+        }
+
+        .logo-img {
+            height: 65px;
         }
     </style>
 
-    <!-- الشعار العلوي -->
-    <img class="top-right-logo" src="https://i.imgur.com/bND8Lte.png">
-
-    <!-- العنوان -->
-    <div class="logo-container">
-        <span class="logo-title">KFUPM</span>
-        <span class="logo-subtitle">CYCLISTS</span><br>
+    <div class="logo-row">
+        <div>
+            <span class="logo-title">KFUPM</span>
+            <span class="logo-subtitle">CYCLISTS</span>
+        </div>
+        <img class="logo-img" src="https://i.imgur.com/bND8Lte.png">
     </div>
     <div class="logo-desc">🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</div>
 """, unsafe_allow_html=True)
