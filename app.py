@@ -3,7 +3,7 @@ import pandas as pd
 import altair as alt
 
 # ---------------------------
-# 1. إخفاء عناصر Streamlit + تنسيق CSS + الشعار النصي المتحرك
+# 1. إخفاء شعار ستريملت والقوائم
 # ---------------------------
 st.markdown("""
     <style>
@@ -44,32 +44,16 @@ st.markdown("""
             margin-top: 10px;
         }
     </style>
-""", unsafe_allow_html=True)
 
-# ---------------------------
-# 2. عرض فيديو الشعار المتحرك (GIF أو MP4)
-# ---------------------------
-# ملاحظة: تأكد إن الملف "kfupm_cyclists_anim.mp4" موجود مع الكود
-video_file = open("kfupm_cyclists_anim.mp4", "rb")  # أو kfupm_cyclists_anim.gif
-video_bytes = video_file.read()
-st.video(video_bytes)  # أو استخدم st.image إذا كان GIF
-
-# ---------------------------
-# 3. عرض الشعار النصي المتحرك
-# ---------------------------
-st.markdown(
-    """
     <div class='logo-container'>
         <span class='logo-title'>KFUPM</span>
         <span class='logo-subtitle'>CYCLISTS</span><br>
         <span class='logo-desc'>🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</span>
     </div>
-    """,
-    unsafe_allow_html=True
-)
+""", unsafe_allow_html=True)
 
 # ---------------------------
-# 4. تحميل إعدادات Google Sheets
+# 2. تحميل الإعدادات من Google Sheets
 # ---------------------------
 config_sheet_id = "1Z7uxg5oIMOwKW1dANOwoxgqv7ewjnpu5euNfALb2VRs"
 config_url = f"https://docs.google.com/spreadsheets/d/{config_sheet_id}/gviz/tq?tqx=out:csv"
@@ -79,7 +63,7 @@ sheet_id = config_df.loc[config_df['المفتاح'] == 'sheet_id', 'القيم�
 sheet_name = config_df.loc[config_df['المفتاح'] == 'sheet_name', 'القيمة'].values[0]
 
 # ---------------------------
-# 5. قراءة وتجهيز البيانات
+# 3. قراءة وتجهيز البيانات
 # ---------------------------
 data_url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
 df = pd.read_csv(data_url).dropna()
@@ -91,7 +75,7 @@ df_grouped = df.groupby(name_col, as_index=False)[points_col].sum()
 df_grouped = df_grouped.sort_values(points_col, ascending=False)
 
 # ---------------------------
-# 6. عرض الرسم البياني
+# 4. عرض العنوان والرسم البياني
 # ---------------------------
 st.title("🚴‍♂️ نتائج دوري الدراجين 251")
 st.markdown("📊 تحديث تلقائي كامل من Google Sheets")
