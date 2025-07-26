@@ -1,54 +1,10 @@
 import streamlit as st
+import pandas as pd
+import altair as alt
 
-# إخفاء شعار Streamlit و"Fork" والـ hamburger menu
-hide_streamlit_style = """
-   st.markdown(
-    """
-    <style>
-    @keyframes pop-in {
-        0%   { transform: scale(0.5); opacity: 0; }
-        80%  { transform: scale(1.1); opacity: 1; }
-        100% { transform: scale(1); }
-    }
-
-    .logo-container {
-        text-align: center;
-        margin-bottom: 30px;
-        animation: pop-in 1s ease-out;
-    }
-
-    .logo-title {
-        font-size: 48px;
-        font-weight: bold;
-        color: white;
-    }
-
-    .logo-subtitle {
-        font-size: 48px;
-        font-weight: bold;
-        color: orange;
-    }
-
-    .logo-desc {
-        font-size: 20px;
-        color: gray;
-        margin-top: 10px;
-    }
-    </style>
-
-    <div class='logo-container'>
-        <span class='logo-title'>KFUPM</span>
-        <span class='logo-subtitle'>CYCLISTS</span><br>
-        <span class='logo-desc'>🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</span>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
-import streamlit as st
-# تعديل شكل Streamlit وإضافة الشعار
+# ---------------------------
+# 1. إخفاء شعار ستريملت والقوائم
+# ---------------------------
 st.markdown("""
     <style>
         #MainMenu, footer, header {visibility: hidden;}
@@ -57,28 +13,59 @@ st.markdown("""
             background-color: #111;
             color: white;
         }
+
+        @keyframes pop-in {
+            0%   { transform: scale(0.5); opacity: 0; }
+            80%  { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: pop-in 1s ease-out;
+        }
+
+        .logo-title {
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .logo-subtitle {
+            font-size: 48px;
+            font-weight: bold;
+            color: orange;
+        }
+
+        .logo-desc {
+            font-size: 20px;
+            color: gray;
+            margin-top: 10px;
+        }
     </style>
-    <div style='text-align: center; margin-bottom: 20px;'>
-        <img src='https://i.imgur.com/jtBDxJV.png' style='max-width: 300px;'>
+
+    <div class='logo-container'>
+        <span class='logo-title'>KFUPM</span>
+        <span class='logo-subtitle'>CYCLISTS</span><br>
+        <span class='logo-desc'>🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</span>
     </div>
 """, unsafe_allow_html=True)
 
-import pandas as pd
-import altair as alt
-
-# ID ملف الإعدادات (config)
+# ---------------------------
+# 2. تحميل الإعدادات من Google Sheets
+# ---------------------------
 config_sheet_id = "1Z7uxg5oIMOwKW1dANOwoxgqv7ewjnpu5euNfALb2VRs"
 config_url = f"https://docs.google.com/spreadsheets/d/{config_sheet_id}/gviz/tq?tqx=out:csv"
-
-# قراءة الإعدادات
 config_df = pd.read_csv(config_url)
+
 sheet_id = config_df.loc[config_df['المفتاح'] == 'sheet_id', 'القيمة'].values[0]
 sheet_name = config_df.loc[config_df['المفتاح'] == 'sheet_name', 'القيمة'].values[0]
 
-# رابط البيانات
+# ---------------------------
+# 3. قراءة وتجهيز البيانات
+# ---------------------------
 data_url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
-
-# قراءة وتجهيز البيانات
 df = pd.read_csv(data_url).dropna()
 df.columns = df.columns.str.strip()
 name_col = df.columns[0]
@@ -87,7 +74,9 @@ df[points_col] = pd.to_numeric(df[points_col], errors='coerce')
 df_grouped = df.groupby(name_col, as_index=False)[points_col].sum()
 df_grouped = df_grouped.sort_values(points_col, ascending=False)
 
-# عرض البيانات
+# ---------------------------
+# 4. عرض العنوان والرسم البياني
+# ---------------------------
 st.title("🚴‍♂️ نتائج دوري الدراجين 251")
 st.markdown("📊 تحديث تلقائي كامل من Google Sheets")
 
