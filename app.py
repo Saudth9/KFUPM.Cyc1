@@ -9,71 +9,83 @@ st.markdown("""
     <style>
         #MainMenu, footer, header {visibility: hidden;}
         .block-container {padding-top: 2rem;}
-        body {
-            background-color: #111;
-            color: white;
-        }
 
-        @keyframes pop-in {
-            0%   { transform: scale(0.5); opacity: 0; }
-            80%  { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); }
-        }
-
-        .logo-row {
+        .logo-bar {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
-            animation: pop-in 1s ease-out;
-            margin-bottom: 5px;
+            gap: 15px;
+            margin-bottom: -10px;
         }
 
-        .logo-title {
-            font-size: 48px;
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .logo-img {
+            height: 70px;
+        }
+
+        .kfupm {
+            font-size: 46px;
             font-weight: bold;
             color: white;
         }
 
-        .logo-subtitle {
-            font-size: 48px;
+        .cyclists {
+            font-size: 46px;
             font-weight: bold;
             color: orange;
         }
 
-        .logo-desc-wrapper {
-            text-align: center;
-            margin-top: 5px;
-            margin-bottom: 25px;
-        }
-
-        .logo-desc {
-            font-size: 18px;
+        .desc {
             color: gray;
+            font-size: 17px;
+            margin-top: -10px;
         }
 
-        .logo-img {
-            height: 80px;
+        .main-title {
+            font-size: 40px;
+            font-weight: bold;
+            color: white;
+            text-align: right;
+            margin-top: 40px;
+            margin-bottom: 10px;
+        }
+
+        .update-note {
+            text-align: right;
+            font-size: 16px;
+            color: #ccc;
         }
     </style>
 
-    <!-- الشعار + العنوان -->
-    <div class="logo-row">
-        <div>
-            <span class="logo-title">KFUPM</span>
-            <span class="logo-subtitle">CYCLISTS</span>
+    <div class='logo-bar'>
+        <div class='logo-text'>
+            <div class='title-line'>
+                <span class='kfupm'>KFUPM</span>
+                <span class='cyclists'>CYCLISTS</span>
+            </div>
+            <div class='desc'>🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول و المعادن</div>
         </div>
-        <img class="logo-img" src="https://i.imgur.com/bND8Lte.png">
+        <img class='logo-img' src='https://i.imgur.com/bND8Lte.png' />
     </div>
 
-    <!-- الوصف -->
-    <div class="logo-desc-wrapper">
-        <div class="logo-desc">🚴‍♂️ نادي دراجي جامعة الملك فهد للبترول والمعادن</div>
-    </div>
+    <div class='main-title'>🚴‍♂️ نتائج دوري الدراجين 251</div>
+    <div class='update-note'>📊 تحديث تلقائي كامل من Google Sheets</div>
 """, unsafe_allow_html=True)
 
 # ---------------------------
-# 2. تحميل إعدادات Google Sheets
+# 2. تحميل الإعدادات من Google Sheets
 # ---------------------------
 config_sheet_id = "1Z7uxg5oIMOwKW1dANOwoxgqv7ewjnpu5euNfALb2VRs"
 config_url = f"https://docs.google.com/spreadsheets/d/{config_sheet_id}/gviz/tq?tqx=out:csv"
@@ -95,11 +107,8 @@ df_grouped = df.groupby(name_col, as_index=False)[points_col].sum()
 df_grouped = df_grouped.sort_values(points_col, ascending=False)
 
 # ---------------------------
-# 4. عرض العنوان والرسم البياني
+# 4. عرض الرسم البياني
 # ---------------------------
-st.title("🚴‍♂️ نتائج دوري الدراجين 251")
-st.markdown("📊 تحديث تلقائي كامل من Google Sheets")
-
 chart = alt.Chart(df_grouped).mark_bar().encode(
     x=alt.X(f'{name_col}:N', sort='-y', title='المشارك', axis=alt.Axis(labelFontSize=16)),
     y=alt.Y(f'{points_col}:Q', title='النقاط'),
